@@ -19,10 +19,12 @@ jobs:
     - name: "[Pre] Installing dependecies"
       run: npm install
     - name: "[Running] Building artifacts"
-      run: npm run build
+      run: |
+        npm run build
+        dist/global-personal-data-api-linux-x64
     - name: "[Running] Uploading artifacts"
       uses: actions/upload-artifact@v2
       with:
         name: my-artifact
-        path: dist
+        path: dist/global-personal-data-api-linux-x64
 

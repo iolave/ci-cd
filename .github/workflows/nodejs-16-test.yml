@@ -2,6 +2,11 @@ name: Node.js CI
 
 on:
   workflow_call:
+    inputs:
+      repo_name:
+        description: 'Repository name' 
+        required: true
+        type: string
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -9,6 +14,7 @@ jobs:
       matrix:
         node-version: [16.x]
     steps:
+    - run: echo ${{ inputs.repo_name }}
     - name: "[Default] Repo initialization"
       uses: actions/checkout@v3
     - name: "[Default] Using nodejs version ${{ matrix.node-version }}"

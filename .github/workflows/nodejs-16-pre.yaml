@@ -1,0 +1,20 @@
+name: nodejs-16-pre
+
+on:
+  workflow_call:
+jobs:
+  pre:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
+    steps:
+    - name: "Repository checkout"
+      uses: actions/checkout@v3
+    - name: "Using nodejs version ${{ matrix.node-version }}"
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - name: "Installing node packages"
+      run: npm install

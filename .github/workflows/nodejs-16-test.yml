@@ -26,7 +26,7 @@ jobs:
     # - name: "[Pre] Installing dependecies"
     #   run: npm install
     - name: Pre
-      uses: iolave/.github/workflows/nodejs-16-pre.yaml@main
+      uses: iolave/ci-cd/.github/workflows/nodejs-16-pre.yaml@main
     - name: "Running tests"
       run: npm run test
     

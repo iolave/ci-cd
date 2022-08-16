@@ -9,14 +9,19 @@ jobs:
       matrix:
         node-version: [16.x]
     steps:
-    - name: "[Default] Repo initialization"
-      uses: actions/checkout@v3
-    - name: "[Default] Using nodejs version ${{ matrix.node-version }}"
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - name: "[Pre] Installing dependecies"
-      run: npm install
-    - name: "[Running] npm run start"
-      run: npm run start
+      - name: "[Pre] Downloading Artifacts"
+        uses: actions/download-artifact@v2
+        with:
+          name: my-artifact
+      - run: ls
+    # - name: "[Pre] Repo initialization"
+      # uses: actions/checkout@v3
+    # - name: "[Pre] Using nodejs version ${{ matrix.node-version }}"
+      # uses: actions/setup-node@v3
+      # with:
+        # node-version: ${{ matrix.node-version }}
+        # cache: 'npm'
+    # - name: "[Pre] Installing dependecies"
+      # run: npm install
+    # - name: "[Running] npm run start"
+      # run: npm run start

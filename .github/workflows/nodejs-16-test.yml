@@ -1,32 +1,23 @@
-name: nodejs-16-testing
+name: nodejs-16-test
 
 on:
   workflow_call:
-    # inputs:
-    #   repo_name:
-    #     description: 'Repository name' 
-    #     required: true
-    #     type: string
 jobs:
   test:
-    runs-on: ubuntu-latest
-    # strategy:
-    #   matrix:
-    #     node-version: [16.x]
+    runs-on: ubuntu-latest    
+    strategy:
+      matrix:
+        node-version: [16.x]
     steps:
-    # - run: echo ${{ inputs.repo_name }}
-    # - run: echo ${{ github.repository }}
-    # - name: "[Default] Repo initialization"
-    #   uses: actions/checkout@v3
-    # - name: "[Default] Using nodejs version ${{ matrix.node-version }}"
-    #   uses: actions/setup-node@v3
-    #   with:
-    #     node-version: ${{ matrix.node-version }}
-    #     cache: 'npm'
-    # - name: "[Pre] Installing dependecies"
-    #   run: npm install
-    - name: Pre
-      uses: iolave/ci-cd/.github/workflows/nodejs-16-pre.yaml@main
+    - name: "Initializing repository"
+      uses: actions/checkout@v3
+    - name: "Setting up node"
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - name: "Installing npm packages"
+      run: npm install
     - name: "Running tests"
       run: npm run test
     

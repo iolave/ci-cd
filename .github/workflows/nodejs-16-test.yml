@@ -9,15 +9,14 @@ jobs:
       matrix:
         node-version: [16.x]
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: \[Setup\] Repo initialization 
+      uses: actions/checkout@v3
+    - name: \[Setup\] Using nodejs version ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    #- run: npm ci
-    #- run: npm run build --if-present
-    - name: Installing dependecies
+    - name: \[Setup\] Installing dependecies
       run: npm install
-    - name: Running tests
+    - name: \[Running\] tests
       run: npm run test

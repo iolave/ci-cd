@@ -13,4 +13,6 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: global-personal-data-api-linux
-      - run: ./global-personal-data-api-linux
+      - run: |
+          chmod +x global-personal-data-api-linux
+          ./global-personal-data-api-linux

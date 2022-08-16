@@ -21,7 +21,7 @@ jobs:
     - name: "[Running] Building artifacts"
       run: |
         npm run build
-        dist/global-personal-data-api-linux
+        chmod +x dist/global-personal-data-api-linux
     - name: "[Running] Uploading artifacts"
       uses: actions/upload-artifact@v2
       with:

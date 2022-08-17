@@ -19,7 +19,11 @@ jobs:
     - name: "Installing npm packages"
       run: npm install
     - name: "Building artifacts"
-      run: npm run build
+      run: |
+        npm run build
+        echo ::set-env name=TF_VAR_instance_label::${GITHUB_REPOSITORY#*/}-${GITHUB_SHA:0:7}
+
+
     - name: "Uploading artifacts"
       uses: actions/upload-artifact@v2
       with:

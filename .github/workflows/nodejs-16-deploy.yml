@@ -17,5 +17,6 @@ jobs:
         with:
           name: "${{ env.GITHUB_ARTIFACT_NAME }}"
       - run: |
-          chmod +x $GITHUB_ARTIFACT_NAME
-          ./$GITHUB_ARTIFACT_NAME
+          ls
+          # chmod +x $GITHUB_ARTIFACT_NAME
+          # ./$GITHUB_ARTIFACT_NAME

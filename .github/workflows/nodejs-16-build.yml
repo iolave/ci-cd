@@ -30,3 +30,4 @@ jobs:
       with:
         name: "${{ env.GITHUB_ARTIFACT_NAME }}"
         path: "dist/${{ env.GITHUB_ARTIFACT_NAME }}"
+        retention-days: 1

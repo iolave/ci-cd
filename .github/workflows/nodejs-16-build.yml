@@ -9,21 +9,19 @@ jobs:
       matrix:
         node-version: [16.x]
     steps:
-    - name: "[Pre] Repo initialization"
+    - name: "Initializing repository"
       uses: actions/checkout@v3
-    - name: "[Pre] Using nodejs version ${{ matrix.node-version }}"
+    - name: "Setting up node"
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - name: "[Pre] Installing dependecies"
+    - name: "Installing npm packages"
       run: npm install
-    - name: "[Running] Building artifacts"
-      run: |
-        npm run build
-    - name: "[Running] Uploading artifacts"
+    - name: "Building artifacts"
+      run: npm run build
+    - name: "Uploading artifacts"
       uses: actions/upload-artifact@v2
       with:
-        name: global-personal-data-api-linux
-        path: dist/global-personal-data-api-linux
-
+        name: ${{ github.repo }}-${{ github.hash }}
+        path: dist/app

@@ -29,4 +29,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: "${{ env.GITHUB_ARTIFACT_NAME }}"
-        path: dist/$GITHUB_ARTIFACT_NAME
+        path: "dist/${{ env.GITHUB_ARTIFACT_NAME }}"

@@ -16,6 +16,8 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+    - name: Setting up env
+      run: echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-7)" >> $GITHUB_ENV
     - name: "Installing npm packages"
       run: npm install
     - name: "Building artifacts"
@@ -25,5 +27,5 @@ jobs:
     - name: "Uploading artifacts"
       uses: actions/upload-artifact@v2
       with:
-        name: "${{ github.event.repository.name }}-${{ github.sha }}"
+        name: "${{ github.event.repository.name }}-${{ env.GITHUB_SHA_SHORT }}"
         path: dist/app

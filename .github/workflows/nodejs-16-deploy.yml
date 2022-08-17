@@ -1,4 +1,4 @@
-name: Node.js CI
+name: nodejs-16-deploy
 
 on:
   workflow_call:
@@ -9,10 +9,13 @@ jobs:
       matrix:
         node-version: [16.x]
     steps:
-      - name: "[Pre] Downloading Artifacts"
+      - name: Setting up env
+        run: |
+          echo "GITHUB_ARTIFACT_NAME=$(echo ${GITHUB_REPOSITORY#*/}-${GITHUB_SHA:0:7})" >> $GITHUB_ENV
+      - name: "Downloading Artifacts"
         uses: actions/download-artifact@v2
         with:
-          name: global-personal-data-api-linux
+          name: "${{ env.GITHUB_ARTIFACT_NAME }}"
       - run: |
-          chmod +x global-personal-data-api-linux
-          ./global-personal-data-api-linux
+          chmod +x $GITHUB_ARTIFACT_NAME
+          ./$GITHUB_ARTIFACT_NAME

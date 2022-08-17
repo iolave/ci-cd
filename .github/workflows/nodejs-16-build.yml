@@ -1,4 +1,4 @@
-name: Node.js CI
+name: nodejs-16-build
 
 on:
   workflow_call:
@@ -22,8 +22,7 @@ jobs:
     - name: "Installing npm packages"
       run: npm install
     - name: "Building artifacts"
-      run: |
-        npm run build
+      run: npm run build
     - name: "Uploading artifacts"
       uses: actions/upload-artifact@v2
       with:

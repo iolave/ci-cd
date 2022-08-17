@@ -22,9 +22,11 @@ jobs:
     - name: "Installing npm packages"
       run: npm install
     - name: "Building artifacts"
-      run: npm run build
+      run: |
+        npm run build
+        mv dist/app dist/$GITHUB_ARTIFACT_NAME
     - name: "Uploading artifacts"
       uses: actions/upload-artifact@v2
       with:
         name: "${{ env.GITHUB_ARTIFACT_NAME }}"
-        path: dist/app
+        path: dist/$GITHUB_ARTIFACT_NAME
